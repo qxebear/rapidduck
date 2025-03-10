@@ -202,7 +202,7 @@ input[type="search"]::-webkit-search-results-decoration {
   right: 16px;
 }
 
-.copy-button {
+.copy-button, .search-button {
   padding: 8px;
   color: var(--copy-btn-color);
   border-radius: 9999px;
@@ -212,15 +212,15 @@ input[type="search"]::-webkit-search-results-decoration {
   justify-content: center;
 }
 
-.copy-button:hover {
+.copy-button:hover, .search-button:hover {
   background: var(--copy-btn-hover-bg-color);
 }
 
-.copy-button:active {
+.copy-button:active, .search-button:active {
   background: var(--copy-btn-active-bg-color);
 }
 
-.copy-button svg {
+.copy-button svg, .search-button svg {
   width: 20px;
   height: 20px;
 }

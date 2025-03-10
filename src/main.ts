@@ -34,7 +34,7 @@ function noSearchDefaultPageRender() {
               value=""
               placeholder="!yt Never gonna give you up"
             />
-            <button type="submit" class="copy-button">
+            <button type="submit" class="search-button">
               <svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" width="24" height="24" fill-rule="evenodd" d="M6.875 1a5.875 5.875 0 103.689 10.448l3.37 3.369a.624.624 0 10.883-.884l-3.37-3.37A5.875 5.875 0 006.875 1zM2.25 6.875a4.625 4.625 0 119.25 0 4.625 4.625 0 01-9.25 0z" clip-rule="evenodd"></path></svg>
             </button>
           </form>

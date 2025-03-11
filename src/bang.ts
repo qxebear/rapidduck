@@ -89404,15 +89404,6 @@ export const bangs = [
   },
   {
     c: "Entertainment",
-    d: "www.roblox.com",
-    r: 138,
-    s: "Roblox",
-    sc: "Games (general)",
-    t: "rblx",
-    u: "http://www.roblox.com/Catalog/Lists.aspx?m=TopFavorites&c=9&t=AllTime&d=All&q={{{s}}}",
-  },
-  {
-    c: "Entertainment",
     d: "devforum.roblox.com",
     r: 5,
     s: "Roblox Developer Forum",

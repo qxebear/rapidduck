@@ -11,3 +11,6 @@ https://d.cutebear.in.th/?q=%s
 DuckDuckGo does their redirects server side. Their DNS is...not always great. Result is that it often takes ages.
 
 I solved this by doing all of the work client side. Once you've went to https://d.cutebear.in.th/?q=%s once, the JS is all cache'd and will never need to be downloaded again. Your device does the redirects, not me.
+
+## Credits
+Credit to the original code, [Unduck](https://github.com/t3dotgg/unduck) by Theo.

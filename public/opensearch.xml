@@ -4,5 +4,5 @@
   <Description>A better default search engine (with additional bangs!)</Description>
   <InputEncoding>UTF-8</InputEncoding>
   <Url type="text/html" template="https://d.cutebear.in.th/search?q={searchTerms}"/>
-  <Url type="application/x-suggestions+json" template="hhttps://d.cutebear.in.th/api/suggestions?q={searchTerms}"/>
+  <Url type="application/x-suggestions+json" template="https://api.cutebear.in.th/api/search/suggestions?q={searchTerms}"/>
 </OpenSearchDescription>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>Rapid Duck</ShortName>
+  <Description>A better default search engine (with additional bangs!)</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Url type="text/html" template="https://d.cutebear.in.th/search?q={searchTerms}"/>
+  <Url type="application/x-suggestions+json" template="hhttps://d.cutebear.in.th/api/suggestions?q={searchTerms}"/>
+</OpenSearchDescription>

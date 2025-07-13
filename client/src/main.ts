@@ -4,20 +4,34 @@ import "./global.css";
 const LS_DEFAULT_BANG = localStorage.getItem("default-bang") ?? "g";
 const defaultBang = bangs.find((b) => b.t === LS_DEFAULT_BANG);
 
+function footerRender() {
+  const app = document.querySelector<HTMLBodyElement>("#root")!;
+  const footer = document.createElement("footer");
+
+  footer.className = "footer"
+  footer.innerHTML = `
+    <div class="footer-inner">
+      <a href="https://www.cutebear.in.th" target="_blank">CuteBear</a>
+      •
+      <a href="https://github.com/t3dotgg/unduck" target="_blank">Unduck</a>
+      •
+      <a href="https://github.com/socutewhitebear/rapidduck" target="_blank">GitHub</a>
+    </div>
+  `;
+  app.appendChild(footer);
+}
+
 function noSearchDefaultPageRender() {
   const app = document.querySelector<HTMLDivElement>("#app")!;
   app.innerHTML = `
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; width: 100%;">
       <div class="content-container">
         <h1>Rapid Duck</h1>
         <p>DuckDuckGo's bang redirects are too slow. Add the following URL as a custom search engine to your browser. You can <a href="/bangs">search all available bangs</a>.</p>
         <br />
-        <p>This is a fork of <a href="https://github.com/t3dotgg/unduck" target="_blank">Unduck</a>.</p>
-        <p>If you ran into any issues, please <a href="https://github.com/socutewhitebear/rapidduck/issues" target="_blank">report them here</a>.</p>
-        <br />
         <hr />
         <div class="url-container"> 
-          <p style="text-align: center;">Try Demo Search</p>
+          <h2 style="text-align: center;">Try Demo Search</h2>
           <form class="url-sub-container">
             <input 
               type="search"
@@ -46,6 +60,7 @@ function noSearchDefaultPageRender() {
             <input 
               type="text" 
               class="url-input"
+              id="urlSearchEngine"
               value="https://d.cutebear.in.th/?q=%s"
               readonly 
             />
@@ -54,14 +69,15 @@ function noSearchDefaultPageRender() {
             </button>
           </div>
         </div>
+        <br />
+        <hr />
+        <br />
+        <div>
+          <p>This is a fork of <a href="https://github.com/t3dotgg/unduck" target="_blank">Unduck</a>.</p>
+          <p>If you ran into any issues, please <a href="https://github.com/socutewhitebear/rapidduck/issues" target="_blank">report them here</a>.</p>
+          <br />
+        </div>
       </div>
-      <footer class="footer">
-        <a href="https://www.cutebear.in.th" target="_blank">CuteBear</a>
-        •
-        <a href="https://github.com/t3dotgg/unduck" target="_blank">Unduck</a>
-        •
-        <a href="https://github.com/socutewhitebear/rapidduck" target="_blank">GitHub</a>
-      </footer>
     </div>
   `;
 
@@ -70,20 +86,20 @@ function noSearchDefaultPageRender() {
 
   copyButton.addEventListener("click", async () => {
     await navigator.clipboard.writeText(urlInput.value);
-    copyButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>`;
+    copyButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check checked"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>`;
     copyButton.classList.add("copied");
 
     setTimeout(() => {
       copyButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>`;
       copyButton.classList.remove("copied");
     }, 2000);
-  }); 
+  });
 }
 
 function searchBangPageRender() {
   const app = document.querySelector<HTMLDivElement>("#app")!;
   app.innerHTML = `
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin-bottom: 24px;">
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; width: 100%;">
       <div class="content-container">
         <h1>Rapid Duck</h1>
         <p class="description"></p>
@@ -115,13 +131,6 @@ function searchBangPageRender() {
         <p class="results-title">"{{value}}" results</p>
         <ul class="results"></ul>
       </div>
-      <footer class="footer">
-        <a href="https://www.cutebear.in.th" target="_blank">CuteBear</a>
-        •
-        <a href="https://github.com/t3dotgg/unduck" target="_blank">Unduck</a>
-        •
-        <a href="https://github.com/socutewhitebear/rapidduck" target="_blank">GitHub</a>
-      </footer>
     </div>
   `;
 
@@ -132,8 +141,7 @@ function searchBangPageRender() {
 
   const amount = bangs.length;
   description.innerHTML = `
-    There are currently <span class="results-bang">${amount.toLocaleString()}</span> of Bangs available here! If you have any suggestions,
-    <a href="https://github.com/socutewhitebear/rapidduck/discussions" target="_blank">discuss them here</a>.`;
+    There are currently <span class="results-bang">${amount.toLocaleString()}</span> of Bangs available here!`;
 
   const highlightMatch = (text: string, query: string) => {
     if (!query) return text; // If query is empty, return original text
@@ -192,33 +200,103 @@ function searchBangPageRender() {
   searchBangs("");
 }
 
-function getBangredirectUrl() {
+function faqPageRender() {
+  const app = document.querySelector<HTMLDivElement>("#app")!;
+  app.innerHTML = `
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin-bottom: 24px;">
+      <div class="content-container">
+        <h1>Rapid Duck</h1>
+        <p class="description">Frequently Asked Questions (FAQ)</p>
+        <br />
+        <hr />
+        <br />
+        <a href="/">Back to Home</a>
+    </div>
+  `;
+}
+
+type Theme = "dark" | "light" | "system";
+
+function pageRenderer() {
   const url = new URL(window.location.href);
+  const html = document.documentElement;
+
+  // Get theme or set default to "system" on first visit
+  let theme = localStorage.getItem("theme") as Theme | null;
+  if (!theme) {
+    theme = "system";
+    localStorage.setItem("theme", theme);
+  }
+
+  const isSystem = theme === "system";
+  const systemPrefersDark = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
+  const resolvedTheme = isSystem
+    ? systemPrefersDark
+      ? "dark"
+      : "light"
+    : theme;
+
+  // Apply to <html> tag
+  html.setAttribute("data-theme", resolvedTheme);
+  html.setAttribute("data-theme-using-system", isSystem.toString());
+  html.classList.remove("dark", "light");
+  html.classList.add(resolvedTheme);
+
+  // 👂 Live detection for system theme change
+  if (isSystem) {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const listener = () => pageRenderer();
+
+    // Avoid adding multiple listeners
+    mediaQuery.removeEventListener("change", listener);
+    mediaQuery.addEventListener("change", listener);
+  }
+
+  // Page routing logic
   if (url.pathname === "/bangs") {
     searchBangPageRender();
-    return null;
+    footerRender();
+    return true;
+  } else if (url.pathname === "/faq") {
+    faqPageRender();
+    footerRender();
+    return true;
   }
+
+  return false;
+}
+
+function getBangredirectUrl() {
+  const url = new URL(window.location.href);
+
+  const page = pageRenderer();
+  if (page) return null;
+
   const query = url.searchParams.get("q")?.trim() ?? "";
+
   if (!query) {
     noSearchDefaultPageRender();
+    footerRender();
     return null;
   }
 
-  const match = query.match(/!(\S+)/i);
-
+  // Only treat bangs at the start (e.g. !gh react)
+  const match = query.match(/^!(\S+)\s+/i);
   const bangCandidate = match?.[1]?.toLowerCase();
   const selectedBang = bangs.find((b) => b.t === bangCandidate) ?? defaultBang;
 
-  // Remove the first bang from the query
-  const cleanQuery = query.replace(/!\S+\s*/i, "").trim();
+  // Remove the first bang (if any) from the beginning of the query
+  const cleanQuery = bangCandidate
+    ? query.replace(/^!\S+\s*/i, "").trim()
+    : query;
 
-  // Format of the url is:
-  // https://www.google.com/search?q={{{s}}}
   const searchUrl = selectedBang?.u.replace(
     "{{{s}}}",
-    // Replace %2F with / to fix formats like "!ghr+t3dotgg/unduck"
     encodeURIComponent(cleanQuery).replace(/%2F/g, "/")
   );
+
   if (!searchUrl) return null;
 
   return searchUrl;

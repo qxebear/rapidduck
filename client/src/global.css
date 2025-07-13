@@ -25,47 +25,66 @@
   --copy-btn-color: #666;
   --copy-btn-hover-bg-color: #f0f0f0;
   --copy-btn-active-bg-color: #e5e5e5;
+  --copy-btn-copied-color: #ffffff;
   --copy-btn-copied-bg-color: #28a745;
   --footer-color: #666;
-  
   --footer-hover-color: #333;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-color: rgb(15, 15, 15);
-    --foreground-color: #f3f3f3;
-    --a-color: #48a7ff;
-    --a-hover-color: #1f82df;
-    --results-bang-bg-color: #1f1f1f;
-    --url-input-bd-color: #464646;
-    --url-input-bg-color: #1f1f1f;
-    --hr-color: #474747;
-    --copy-btn-color: #d3d3d3;
-    --copy-btn-hover-bg-color: #222222;
-    --copy-btn-active-bg-color: #4d4d4d;
-    --copy-btn-copied-bg-color: #28a745;
-    --footer-color: #adadad;
-    --footer-hover-color: #818181;
-  }
+:root:where(.dark, .dark *) {
+  --background-color: rgb(15, 15, 15);
+  --foreground-color: #f3f3f3;
+  --a-color: #48a7ff;
+  --a-hover-color: #1f82df;
+  --results-bang-bg-color: #1f1f1f;
+  --url-input-bd-color: #464646;
+  --url-input-bg-color: #1f1f1f;
+  --hr-color: #474747;
+  --copy-btn-color: #d3d3d3;
+  --copy-btn-hover-bg-color: #222222;
+  --copy-btn-active-bg-color: #4d4d4d;
+  --copy-btn-copied-color: #ffffff;
+  --copy-btn-copied-bg-color: #28a745;
+  --footer-color: #adadad;
+  --footer-hover-color: #818181;
 }
 
-* {
+*,
+::backdrop,
+:after,
+:before {
   margin: 0;
+  border: 0 solid;
   padding: 0;
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-  width: 100%;
+button,
+input:where([type="button"], [type="reset"], [type="submit"]) {
+  appearance: button;
+}
+
+*:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: #1f82df auto 1px !important;
+}
+
+html, body {
+  height: 100vh;
+  width: 100vw;
 }
 
 body {
   line-height: 1.5;
   font-weight: 400;
   font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: var(--background-color);
   color: var(--foreground-color);
 }
@@ -80,8 +99,14 @@ h6 {
   line-height: 1.2;
 }
 
+h2 {
+  font-size: 1rem;
+}
+
 a {
   color: var(--a-color);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 a:hover {
   color: var(--a-hover-color);
@@ -97,6 +122,16 @@ button {
 input,
 textarea {
   font: inherit;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1300px;
+  height: 100%;
 }
 
 /* Add these new styles */
@@ -118,14 +153,15 @@ textarea {
 
 /* Add this new style */
 .content-container {
-  max-width: 36rem;
+  max-width: 40rem;
+  width: 100%;
   text-align: center;
   padding: 0 8px;
 }
 
 hr {
   border-radius: 9999px;
-  border-width: 1px;
+  border-bottom: 1px;
   border-style: solid;
   border-color: var(--hr-color);
 }
@@ -202,7 +238,8 @@ input[type="search"]::-webkit-search-results-decoration {
   right: 16px;
 }
 
-.copy-button, .search-button {
+.copy-button,
+.search-button {
   padding: 8px;
   color: var(--copy-btn-color);
   border-radius: 9999px;
@@ -212,21 +249,25 @@ input[type="search"]::-webkit-search-results-decoration {
   justify-content: center;
 }
 
-.copy-button:hover, .search-button:hover {
+.copy-button:hover,
+.search-button:hover {
   background: var(--copy-btn-hover-bg-color);
 }
 
-.copy-button:active, .search-button:active {
+.copy-button:active,
+.search-button:active {
   background: var(--copy-btn-active-bg-color);
 }
 
-.copy-button svg, .search-button svg {
+.copy-button svg,
+.search-button svg {
   width: 20px;
   height: 20px;
 }
 
 .copy-button.copied {
   background: var(--copy-btn-copied-bg-color);
+  color: var(--copy-btn-copied-color);
 }
 
 /* Add footer styles */

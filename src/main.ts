@@ -200,7 +200,7 @@ function searchBangPageRender() {
   searchBangs("");
 }
 
-function faqPageRender() {
+function faqsPageRender() {
   const app = document.querySelector<HTMLDivElement>("#app")!;
   app.innerHTML = `
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin-bottom: 24px;">
@@ -259,8 +259,8 @@ function pageRenderer() {
     searchBangPageRender();
     footerRender();
     return true;
-  } else if (url.pathname === "/faq") {
-    faqPageRender();
+  } else if (url.pathname === "/faqs") {
+    faqsPageRender();
     footerRender();
     return true;
   }

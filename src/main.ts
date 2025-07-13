@@ -61,7 +61,7 @@ function noSearchDefaultPageRender() {
               type="text" 
               class="url-input"
               id="urlSearchEngine"
-              value="https://d.cutebear.in.th/?q=%s"
+              value="https://d.cutebear.in.th/search?q=%s"
               readonly 
             />
             <button class="copy-button">

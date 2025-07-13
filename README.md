@@ -10,14 +10,17 @@ https://d.cutebear.in.th/search?q=%s
 
 ## Frequently Asked Questions (FAQs)
 
-### How is it that much faster?
-I solved this by doing all of the work client side. Once you've went to https://d.cutebear.in.th/ once, the JS is all cache'd and will never need to be downloaded again. Your device does the redirects, not me.
+### What is Rapid Duck?
+Rapid Duck is a fast and efficient way to use DuckDuckGo's bangs, providing quick redirects on client side.
 
-### Why is this better than DuckDuckGo?
-DuckDuckGo does their redirects server side. Their DNS is...not always great. Result is that it often takes ages. I remade it by doing all of the redirects client side.
+### How do I use it?
+Simply type a bang followed by your search query in the search bar. For example, `!wiki Isaac Newton` will search for "Isaac Newton" on Wikipedia.
 
-### Why cannot I use bang?
-You need to put `!bang` at the start of the query. (Example: "`!wiki Isaac Newton`").
+### Can I add it as a search engine in my browser?
+Yes! You can add the URL `https://d.cutebear.in.th/search?q=%s` as a custom search engine in your browser settings.
+
+### Where can I find more bangs?
+You can find a list of available on the [Bangs page](https://d.cutebear.in.th/bangs).
 
 ## Credits
 Credit to the original code, [Unduck](https://github.com/T3-Content/unduck) by Theo Browne.

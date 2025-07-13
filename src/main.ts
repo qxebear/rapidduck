@@ -8,7 +8,7 @@ function footerRender() {
   const app = document.querySelector<HTMLBodyElement>("#root")!;
   const footer = document.createElement("footer");
 
-  footer.className = "footer"
+  footer.className = "footer";
   footer.innerHTML = `
     <div class="footer-inner">
       <a href="https://www.cutebear.in.th" target="_blank">CuteBear</a>
@@ -32,7 +32,7 @@ function noSearchDefaultPageRender() {
         <hr />
         <div class="url-container"> 
           <h2 style="text-align: center;">Try Demo Search</h2>
-          <form class="url-sub-container">
+          <form class="url-sub-container" action="/search" method="get">
             <input 
               type="search"
               role="searchbox"
@@ -97,6 +97,9 @@ function noSearchDefaultPageRender() {
 }
 
 function searchBangPageRender() {
+  const url = new URL(window.location.href);
+  const value = url.searchParams.get("q")?.trim() ?? "";
+
   const app = document.querySelector<HTMLDivElement>("#app")!;
   app.innerHTML = `
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; width: 100%;">
@@ -197,20 +200,31 @@ function searchBangPageRender() {
     searchBangs(searchInput.value);
   });
 
-  searchBangs("");
+  searchBangs(value);
+  searchInput.value = value; // Set initial value
+  searchInput.focus();
 }
 
 function faqsPageRender() {
   const app = document.querySelector<HTMLDivElement>("#app")!;
   app.innerHTML = `
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin-bottom: 24px;">
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; width: 100%;">
       <div class="content-container">
         <h1>Rapid Duck</h1>
-        <p class="description">Frequently Asked Questions (FAQ)</p>
+        <p class="description">Frequently Asked Questions (FAQs)</p>
         <br />
         <hr />
         <br />
         <a href="/">Back to Home</a>
+        <div class="faqs-container">
+          <h2>What is Rapid Duck?</h2>
+          <p>Rapid Duck is a fast and efficient way to use DuckDuckGo's bangs, providing quick redirects on client side.</p>
+          <h2>How do I use it?</h2>
+          <p>Simply type a bang followed by your search query in the search bar. For example, <code>!wiki Isaac Newton</code> will search for "Isaac Newton" on Wikipedia.</p>
+          <h2>Can I add it as a search engine in my browser?</h2>
+          <p>Yes! You can add the URL <code>https://d.cutebear.in.th/search?q=%s</code> as a custom search engine in your browser settings.</p>
+          <h2>Where can I find more bangs?</h2>
+          <p>You can find a list of available bangs on the <a href="/bangs">Bangs page</a>.</p>
     </div>
   `;
 }
@@ -255,7 +269,11 @@ function pageRenderer() {
   }
 
   // Page routing logic
-  if (url.pathname === "/bangs") {
+  if (url.pathname === "/") {
+    noSearchDefaultPageRender();
+    footerRender();
+    return true;
+  } else if (url.pathname === "/bangs") {
     searchBangPageRender();
     footerRender();
     return true;
@@ -273,6 +291,12 @@ function getBangredirectUrl() {
 
   const page = pageRenderer();
   if (page) return null;
+
+  if (url.pathname != "/search") {
+    noSearchDefaultPageRender();
+    footerRender();
+    return null;
+  }
 
   const query = url.searchParams.get("q")?.trim() ?? "";
 

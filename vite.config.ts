@@ -5,6 +5,10 @@ export default defineConfig({
   plugins: [
     VitePWA({
       registerType: "autoUpdate",
+      includeAssets: ["opensearch.xml"],
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,xml,svg}"],
+      },
     }),
   ],
   server: {

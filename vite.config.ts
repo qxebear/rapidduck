@@ -8,6 +8,12 @@ export default defineConfig({
       includeAssets: ["opensearch.xml"],
       workbox: {
         globPatterns: ["**/*.{js,css,html,xml,svg}"],
+        navigateFallbackDenylist: [
+          /\/opensearch\.xml$/,
+          /\.xml$/,
+          /robots\.txt$/, 
+          /manifest\.webmanifest$/,
+        ],
       },
     }),
   ],
